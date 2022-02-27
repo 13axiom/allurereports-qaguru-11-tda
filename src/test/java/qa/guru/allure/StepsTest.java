@@ -23,31 +23,31 @@ public class StepsTest {
     @Test
     @Owner("dimtok")
     @Severity(SeverityLevel.NORMAL)
-    @Feature("обучение на репе " + REPOSITORY)
-    @Story("вкладка Issue")
-    @DisplayName("проверяем что существует Issue с номером " + ISSUE_NUMBER)
+    @Feature("Обучение на репе " + REPOSITORY)
+    @Story("Вкладка Issue")
+    @DisplayName("Проверяем что существует Issue с номером " + ISSUE_NUMBER)
     public void testLambdaSteps() {
         Allure.parameter("REPOSITORY", "eroshenkoam/allure-example");
         Allure.parameter("ISSUE_NUMBER", "68");
 
         SelenideLogger.addListener("allure", new AllureSelenide());
 
-        step("открываем главную страницу", () -> {
+        step("Открываем главную страницу", () -> {
             open("https://github.com");
         });
-        step("ищем репоизторий " + REPOSITORY, () -> {
+        step("Ищем репоизторий " + REPOSITORY, () -> {
             $(".header-search-input").click();
             $(".header-search-input").sendKeys(REPOSITORY);
             $(".header-search-input").submit();
         });
-        step("открываем репозиторий " + REPOSITORY, () -> {
+        step("Открываем репозиторий " + REPOSITORY, () -> {
             $(By.linkText("eroshenkoam/allure-example")).click();
         });
-        step("переходим в таб Issue", () -> {
+        step("Переходим в таб Issue", () -> {
             $(By.partialLinkText("Issues")).click();
             addAttachment("Page Source", "text/html", WebDriverRunner.source(), "html");
         });
-        step("проверяем что существует Issue с номером " + ISSUE_NUMBER, () -> {
+        step("Проверяем что существует Issue с номером " + ISSUE_NUMBER, () -> {
             $(withText("#68")).should(Condition.exist);
         });
     }
