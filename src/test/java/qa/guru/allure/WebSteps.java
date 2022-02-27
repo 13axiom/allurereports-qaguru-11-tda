@@ -14,29 +14,29 @@ import static com.codeborne.selenide.Selenide.open;
 
 public class WebSteps {
 
-    @Step("Открываем главную страницу")
+    @Step("открываем главную страницу")
     public void openMainPage() {
         open("https://github.com");
     }
 
-    @Step("Ищем репоизторий {repo}")
+    @Step("ищем репозиторий {repo}")
     public void searchForRepository(String repo) {
         $(".header-search-input").click();
         $(".header-search-input").sendKeys(repo);
         $(".header-search-input").submit();
     }
 
-    @Step("Открываем репозиторий {repo}")
+    @Step("открываем репозиторий {repo}")
     public void openRepository(String repo) {
         $(By.linkText(repo)).click();
     }
 
-    @Step("Переходим в таб Issue")
+    @Step("переходим в таб Issue")
     public void openIssueTab() {
         $(By.partialLinkText("Issues")).click();
     }
 
-    @Step("Проверяем что существует Issue с номером {num}")
+    @Step("проверяем что существует Issue с номером {num}")
     public void shouldSeeIssueWithNumber(int num) {
         $(withText("#68")).should(Condition.exist);
     }
